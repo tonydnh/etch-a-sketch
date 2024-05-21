@@ -1,24 +1,19 @@
-const container = document.querySelector(".grid-container");
+draw();
 
-drawGrid(16);
+function draw() {
+    drawGrid(16);
 
-const boxes = document.querySelectorAll(".column");
-let held = false;
+    const sizeSlider = document.querySelector("#size-slider");
+    const gridSize = document.querySelector("#grid-size");
+    
+    sizeSlider.addEventListener("input", () => {
+        let newSize = sizeSlider.value;
+        gridSize.textContent = `Grid Size: ${newSize} x ${newSize}`
 
-for (const box of boxes) {
-    box.addEventListener("mousedown", (e) => {
-        color(e.target);
-        held = true;
-    });
-
-    box.addEventListener("mouseup", () => {
-        held = false;
-    });
-
-    box.addEventListener("mouseenter", (e) => {
-        if (held) {
-            color(e.target);
-        }
+        // Remove old grid before drawing new one
+        const oldGrid = document.querySelectorAll(".row", ".column");
+        oldGrid.forEach(grid => grid.remove());
+        drawGrid(newSize);
     });
 }
 
@@ -27,6 +22,8 @@ function color(element) {
 }
 
 function drawGrid(size) {
+    const container = document.querySelector(".grid-container");
+
     for (let r = 0; r < size; r++) {
         const row = document.createElement("div");
         row.className = "row"
@@ -36,5 +33,26 @@ function drawGrid(size) {
             row.appendChild(column);
         }
         container.appendChild(row);
+    }
+
+    const boxes = document.querySelectorAll(".column");
+    let held = false;
+
+    for (const box of boxes) {
+        // Event listeners for hold and drag to draw
+        box.addEventListener("mousedown", (e) => {
+            color(e.target);
+            held = true;
+        });
+
+        box.addEventListener("mouseup", () => {
+            held = false;
+        });
+
+        box.addEventListener("mouseenter", (e) => {
+            if (held) {
+                color(e.target);
+            }
+        });
     }
 }
