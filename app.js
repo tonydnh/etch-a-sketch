@@ -1,4 +1,6 @@
 draw();
+const clearButton = document.querySelector("#clear-btn");
+clearButton.addEventListener("click", clearGrid);
 
 function draw() {
     drawGrid(16);
@@ -35,6 +37,10 @@ function drawGrid(size) {
         container.appendChild(row);
     }
 
+    enableBoxes();
+}
+
+function enableBoxes() {
     const boxes = document.querySelectorAll(".column");
     let held = false;
 
@@ -55,4 +61,9 @@ function drawGrid(size) {
             }
         });
     }
+}
+
+function clearGrid() {
+    const grid = document.querySelectorAll(".column");
+    grid.forEach(box => box.style.backgroundColor = "white");
 }
