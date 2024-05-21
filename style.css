@@ -13,14 +13,29 @@ body {
   margin: 16px 0;
 }
 
-#container {
+.grid-container {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   width: 800px;
+  height: 800px;
 }
 
-.box {
+.row {
+  display: flex;
+  flex: 1;
+}
+
+.column {
+  border: 1px solid black;
   box-sizing: border-box;
   margin: -1px 0 0 -1px;
-  cursor: crosshair;
+  flex: 1;
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 16px;
 }
