@@ -1,0 +1,11 @@
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 800px;
+}
+
+.box {
+  box-sizing: border-box;
+  margin: -1px 0 0 -1px;
+  cursor: crosshair;
+}
